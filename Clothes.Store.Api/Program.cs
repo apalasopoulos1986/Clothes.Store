@@ -3,6 +3,7 @@ using Clothes.Store.Api.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 {
     {
+        var connectionString = builder.Configuration.GetConnectionString("DbConnection");
         builder.AddOptions();
         builder.Services.AddHttpClient();
         builder.Services.AddServices();
