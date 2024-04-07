@@ -5,6 +5,6 @@ namespace Clothes.Store.Service.Interfaces
 {
     public interface IProductsMigrationService
     {
-        public Task<Result<List<ProductResponse>>> FetchProductsAsync();
+        public Task<Result<List<ProductResponse>>> FetchProductsFromWebServiceAsync();
     }
 }

@@ -8,17 +8,14 @@ namespace Clothes.Store.Service.Extensions
     {
         public static List<ProductResponse> TransformProducts(string json)
         {
-            
 
-           var products = JsonConvert.DeserializeObject<List<ProductResponse>>(json, new JsonSerializerSettings
-           {
-          
-               Formatting = Formatting.Indented
-           });
+            var products = JsonConvert.DeserializeObject<List<ProductResponse>>(json, new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented
+            });
 
             return products;
 
-        
         }
     }
 }

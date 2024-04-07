@@ -1,19 +1,26 @@
 using Clothes.Store.Api.Configuration;
+using Clothes.Store.Db.Context;
+using Clothes.Store.Db.Interfaces;
+using Clothes.Store.Db.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-{
-    {
-        var connectionString = builder.Configuration.GetConnectionString("DbConnection");
-        builder.AddOptions();
-        builder.Services.AddHttpClient();
-        builder.Services.AddServices();
-    }
 
-builder.Services.AddControllers();
+builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.AddOptions();
+builder.Services.AddHttpClient();
+builder.Services.AddServices();
+        
+       
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-}
+
+    
+
+    builder.Services.AddControllers();
+
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 {
     // Configure the HTTP request pipeline.

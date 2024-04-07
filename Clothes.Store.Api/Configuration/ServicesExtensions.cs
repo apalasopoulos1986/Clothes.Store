@@ -1,5 +1,9 @@
-﻿using Clothes.Store.Service.Interfaces;
+﻿using Clothes.Store.Db.Context;
+using Clothes.Store.Db.Interfaces;
+using Clothes.Store.Db.Repository;
+using Clothes.Store.Service.Interfaces;
 using Clothes.Store.Service.Services;
+
 
 namespace Clothes.Store.Api.Configuration
 {
@@ -8,11 +12,12 @@ namespace Clothes.Store.Api.Configuration
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             {
-
                 services.AddSingleton<IProductsMigrationService, ProductsMigrationService>();
+               
             }
-
+            
             return services;
         }
+      
     }
 }

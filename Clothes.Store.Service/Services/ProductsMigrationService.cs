@@ -21,7 +21,7 @@ namespace Clothes.Store.Service.Services
             _client = httpClientFactory.CreateClient($"{nameof(ProductsMigrationService)}");
             _settings = _options.Value;
         }
-        public async Task<Result<List<ProductResponse>>> FetchProductsAsync()
+        public async Task<Result<List<ProductResponse>>> FetchProductsFromWebServiceAsync()
         {
             try
             {
