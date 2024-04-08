@@ -1,6 +1,4 @@
 ﻿using Clothes.Store.Db.Context;
-using Clothes.Store.Db.Interfaces;
-using Clothes.Store.Db.Repository;
 using Clothes.Store.Service.Interfaces;
 using Clothes.Store.Service.Services;
 
@@ -13,11 +11,10 @@ namespace Clothes.Store.Api.Configuration
         {
             {
                 services.AddTransient<IProductsMigrationService, ProductsMigrationService>();
-               
             }
-            
+
             return services;
         }
-      
+
     }
 }
