@@ -1,6 +1,4 @@
-﻿
-
-namespace Clothes.Store.Common.Models.Result.ResponseCodes
+﻿namespace Clothes.Store.Common.Models.Result.ResponseCodes
 {
     public class Codes
     {

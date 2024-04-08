@@ -1,5 +1,4 @@
-﻿
-using Clothes.Store.Common.Models.Result;
+﻿using Clothes.Store.Common.Models.Result;
 using Clothes.Store.Common.Models.Result.ResponseCodes;
 using Clothes.Store.Db.Interfaces;
 using Clothes.Store.Service.Interfaces;

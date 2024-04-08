@@ -1,5 +1,4 @@
-﻿
-using Clothes.Store.Common.Models;
+﻿using Clothes.Store.Common.Models;
 using Newtonsoft.Json;
 
 namespace Clothes.Store.Common.Responses

@@ -1,6 +1,4 @@
-﻿
-
-namespace Clothes.Store.Common.Models.Settings
+﻿namespace Clothes.Store.Common.Models.Settings
 {
     public class StoreSettings
     {
