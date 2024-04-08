@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Sql.Scripts\" />
     <Folder Include="Requests\" />
   </ItemGroup>
 
