@@ -3,10 +3,10 @@
 namespace Clothes.Store.Common.Models
 {
     /// <summary>
-    /// Numbers of User
+    /// Number of User
     /// </summary>
  
-    public class PhoneNumbers
+    public class PhoneNumber
     {
         [JsonProperty("type")]
         public string Type { get; set; }

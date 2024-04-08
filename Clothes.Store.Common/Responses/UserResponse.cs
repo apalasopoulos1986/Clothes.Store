@@ -20,10 +20,11 @@ namespace Clothes.Store.Common.Responses
 
         [JsonProperty("age")]
         public int? Age { get; set; }
+
         [JsonProperty("address")]
         public Address Address { get; set; }
 
         [JsonProperty("phoneNumbers")]
-        public PhoneNumbers PhoneNumbers { get; set; }
+        public List<PhoneNumber> PhoneNumbers { get; set; }
     }
 }

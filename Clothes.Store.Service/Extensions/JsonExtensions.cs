@@ -1,4 +1,5 @@
-﻿using Clothes.Store.Common.Responses;
+﻿using Clothes.Store.Common.Models;
+using Clothes.Store.Common.Responses;
 using Newtonsoft.Json;
 
 
@@ -17,7 +18,20 @@ namespace Clothes.Store.Service.Extensions
             return products;
 
         }
-       
-       
+
+
+        public static List<UserResponse> TransformUsers(string json)
+        {
+
+            var rootObject = JsonConvert.DeserializeObject<UserRootObject>(json, new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented
+            });
+
+            return rootObject?.Users;
+
+        }
+
+
     }
 }
