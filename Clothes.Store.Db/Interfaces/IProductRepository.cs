@@ -6,7 +6,7 @@ namespace Clothes.Store.Db.Interfaces
 {
     public interface IProductRepository
     {
-        public Task<Result<IEnumerable<Product>>> GetProductsFromDb();
-        public Task<Result<bool>> InsertProductsAsync(IEnumerable<ProductResponse> productResponses);
+        public Task<Result<List<Product>>> GetProductsFromDb();
+        public Task<Result<bool>> InsertProductsAsync(List<ProductResponse> productResponses);
     }
 }

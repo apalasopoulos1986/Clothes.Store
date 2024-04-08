@@ -11,9 +11,9 @@ namespace Clothes.Store.Db.Context
         private readonly IConfiguration _configuration;
        
         private readonly string _connectionString;
-        public DapperContext(IConfiguration _configuration)
+        public DapperContext(IConfiguration configuration)
         {
-            _configuration = _configuration ?? throw new ArgumentNullException();
+            _configuration = configuration ?? throw new ArgumentNullException();
             _connectionString = _configuration.GetConnectionString("DbConnection");
         }
         public IDbConnection CreateConnection() => new SqlConnection(_connectionString);

@@ -12,7 +12,7 @@ namespace Clothes.Store.Api.Configuration
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             {
-                services.AddSingleton<IProductsMigrationService, ProductsMigrationService>();
+                services.AddTransient<IProductsMigrationService, ProductsMigrationService>();
                
             }
             

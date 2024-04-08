@@ -74,5 +74,25 @@ namespace Clothes.Store.Api.Controllers
                 return StatusCode(result.Code, result.Info?.Message);
             }
         }
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<IActionResult> MigrateProductsFromWebService()
+        {
+            var result = await _productsMigrationService.MigrateProductsAsync();
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            else if (result.HasException)
+            {
+
+                return StatusCode(Codes.InternalError, result.Info?.Message);
+            }
+            else
+            {
+                return StatusCode(result.Code, result.Info?.Message);
+            }
+        }
+
     }
 }
