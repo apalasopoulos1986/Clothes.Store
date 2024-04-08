@@ -11,17 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothes.Store.Common", "Clo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothes.Store.Service", "Clothes.Store.Service\Clothes.Store.Service.csproj", "{F438387B-F609-4305-B091-A584A01EDD31}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sql.Scripts", "Sql.Scripts", "{E9D2CA60-5293-40CC-B6DD-6CED4764EC8C}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\Desktop\Ebiscon\Clothes_Store_Schema_Creation.sql = ..\..\..\Desktop\Ebiscon\Clothes_Store_Schema_Creation.sql
-		..\..\..\Desktop\Ebiscon\InsertProductResponseFromWebService.sql = ..\..\..\Desktop\Ebiscon\InsertProductResponseFromWebService.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Json.Files", "Json.Files", "{64969F5B-83E2-4143-819C-5DF48628FF9F}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\Desktop\Ebiscon\sample_user (1) 1 (2).json = ..\..\..\Desktop\Ebiscon\sample_user (1) 1 (2).json
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
