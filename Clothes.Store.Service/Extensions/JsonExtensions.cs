@@ -1,5 +1,4 @@
 ﻿using Clothes.Store.Common.Responses;
-using Clothes.Store.Db.DbEntities;
 using Newtonsoft.Json;
 
 
