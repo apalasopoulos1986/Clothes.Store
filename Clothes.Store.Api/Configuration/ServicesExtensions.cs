@@ -1,5 +1,4 @@
-﻿using Clothes.Store.Db.Context;
-using Clothes.Store.Service.Interfaces;
+﻿using Clothes.Store.Service.Interfaces;
 using Clothes.Store.Service.Services;
 
 
