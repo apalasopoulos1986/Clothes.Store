@@ -43,14 +43,19 @@ namespace Clothes.Store.Db.Repository
 
                     if (!userExists)
                     {
-                        return Result<bool>.ActionFailed(userExists, Clothes.Store.Common.Models.Result.ResponseCodes.Codes.NotFound);
+                        return Result<bool>.ActionFailed(userExists,
+                             Clothes.Store.Common.Models.Result.ResponseCodes.Codes.NotFound,
+                             new Info { Message = "User does not exist." });
                     }
 
                     var productExists = await connection.ExecuteScalarAsync<bool>(CheckProductExistsQuery, new { ProductId = productId });
 
                     if (!productExists)
                     {
-                        return Result<bool>.ActionFailed(productExists, Clothes.Store.Common.Models.Result.ResponseCodes.Codes.NotFound);
+                        return Result<bool>.ActionFailed(productExists,
+                            Clothes.Store.Common.Models.Result.ResponseCodes.Codes.NotFound,
+                            new Info { Message = "Product does not exist." });
+
                     }
 
 
@@ -58,11 +63,11 @@ namespace Clothes.Store.Db.Repository
                     {
                         UserId = userId,
                         ProductId = productId,
-                        PurchaseDate = DateTime.UtcNow, 
-                        IsUserActive = true 
+                        PurchaseDate = DateTime.UtcNow,
+                        IsUserActive = true
                     };
-                                        
-                    var result = await 
+
+                    var result = await
                                  connection.ExecuteAsync(PurchaseProductQuery, purchase);
 
                     return Result<bool>.ActionSuccessful(result > 0, Clothes.Store.Common.Models.Result.ResponseCodes.Codes.OK);
@@ -101,7 +106,8 @@ namespace Clothes.Store.Db.Repository
                     var products = await
                                   connection.QueryAsync<Product>(GetPurchasedProductsByUserId, new { UserId = userId });
 
-                    return Result<List<Product>>.ActionSuccessful(products.ToList(), Clothes.Store.Common.Models.Result.ResponseCodes.Codes.OK);
+                    return Result<List<Product>>.ActionSuccessful(products.ToList(),
+                        Clothes.Store.Common.Models.Result.ResponseCodes.Codes.OK);
                 }
             }
             catch (Exception ex)
