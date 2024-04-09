@@ -4,10 +4,8 @@ using Clothes.Store.Common.Requests;
 using Clothes.Store.Db.Interfaces;
 using Clothes.Store.Service.Interfaces;
 using Clothes.Store.Db.Extensions;
-using Clothes.Store.Db.DbEntities;
 using Clothes.Store.Common.Responses;
-using Clothes.Store.Common.Models;
-using Newtonsoft.Json;
+using Clothes.Store.Service.Extensions;
 
 
 namespace Clothes.Store.Service.Services
@@ -49,7 +47,7 @@ namespace Clothes.Store.Service.Services
 
                 var usersDb = usersResult.Data;
 
-                var userResponses = usersDb.Select(user => ConvertToUserResponse(user)).ToList();
+                var userResponses = usersDb.Select(user => JsonExtensions.ConvertToUserResponse(user)).ToList();
 
                 return Result<List<UserResponse>>.ActionSuccessful(userResponses, Codes.OK);
             }
@@ -73,7 +71,7 @@ namespace Clothes.Store.Service.Services
                 }
                 var userDb = userResult.Data;
 
-                var userResponse = ConvertToUserResponse(userDb);
+                var userResponse = JsonExtensions.ConvertToUserResponse(userDb);
 
                 return Result<UserResponse>.ActionSuccessful(userResponse, Codes.OK);
             }
@@ -102,18 +100,5 @@ namespace Clothes.Store.Service.Services
             }
         }
 
-        private UserResponse ConvertToUserResponse(User user)
-        {
-            return new UserResponse
-            {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Gender = user.Gender,
-                Age = user.Age,
-                Address = JsonConvert.DeserializeObject<Address>(user.Address),
-                PhoneNumbers = JsonConvert.DeserializeObject<List<PhoneNumber>>(user.PhoneNumbers)
-            };
         }
-    }
 }

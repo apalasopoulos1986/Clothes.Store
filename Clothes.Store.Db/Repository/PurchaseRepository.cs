@@ -33,7 +33,7 @@ namespace Clothes.Store.Db.Repository
                                 INNER JOIN Purchases pur ON p.Id = pur.ProductId
                                 WHERE pur.UserId = @UserId;";
 
-        public async Task<Result<bool>> PurchaseProductAsync(int userId, int productId)
+        public async Task<Result<bool>> PurchaseProductAsyncDb(int userId, int productId)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace Clothes.Store.Db.Repository
             }
         }
 
-        public async Task<Result<List<User>>> GetUsersByProductIdAsync(int productId)
+        public async Task<Result<List<User>>> GetUsersByProductIdAsyncDb(int productId)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace Clothes.Store.Db.Repository
             }
         }
 
-        public async Task<Result<List<Product>>> GetPurchasedProductsByUserIdAsync(int userId)
+        public async Task<Result<List<Product>>> GetPurchasedProductsByUserIdAsyncDb(int userId)
         {
             try
             {

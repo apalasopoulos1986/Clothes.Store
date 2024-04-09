@@ -19,21 +19,34 @@ namespace Clothes.Store.Service.Extensions
             return products;
 
         }
-
-
-        public static List<UserResponse> TransformUsers(string json)
+        public static UserResponse ConvertToUserResponse(this User user)
         {
-
-            var rootObject = JsonConvert.DeserializeObject<UserRootObject>(json, new JsonSerializerSettings
+            return new UserResponse
             {
-                Formatting = Formatting.Indented
-            });
-
-            return rootObject?.Users;
-
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Gender = user.Gender,
+                Age = user.Age,
+                Address = JsonConvert.DeserializeObject<Address>(user.Address),
+                PhoneNumbers = JsonConvert.DeserializeObject<List<PhoneNumber>>(user.PhoneNumbers)
+            };
         }
 
-      
+
+        public static ProductResponse ConvertToProductResponse(this Product product)
+        {
+            return new ProductResponse
+            {
+                Id = product.Id,
+                Title = product.Title,
+                Price = product.Price,
+                Description = product.Description,
+                Category = product.Category,
+                Image = product.Image,
+                Rating = JsonConvert.DeserializeObject<Rating> (product.Rating)
+            };
+        }
 
 
     }
