@@ -1,4 +1,4 @@
-﻿using Clothes.Store.Common.Responses;
+﻿using Clothes.Store.Common.Requests;
 using Clothes.Store.Db.DbEntities;
 using Newtonsoft.Json;
 
@@ -7,18 +7,17 @@ namespace Clothes.Store.Db.Extensions
 {
     public static class UserExtension
     {
-        public static User ToUser(this UserResponse response)
+        public static User ToUser(this UserCreateRequest request)
         {
 
             var user = new User
             {
-                Id = response.Id,
-                FirstName = response.FirstName,
-                LastName = response.LastName,
-                Gender = response.Gender,
-                Age = response.Age,
-                Address = JsonConvert.SerializeObject(response.Address),
-                PhoneNumbers = JsonConvert.SerializeObject(response.PhoneNumbers)
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Gender = request.Gender,
+                Age = request.Age,
+                Address = JsonConvert.SerializeObject(request.Address),
+                PhoneNumbers = JsonConvert.SerializeObject(request.PhoneNumbers)
             };
 
             return user;
