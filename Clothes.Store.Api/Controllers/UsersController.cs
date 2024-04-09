@@ -69,7 +69,7 @@ namespace Clothes.Store.Api.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("GetUserById/{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
             var result = await _userService.GetUserByIdAsync(id);
