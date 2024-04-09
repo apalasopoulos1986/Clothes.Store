@@ -1,14 +1,10 @@
 ﻿using Clothes.Store.Common.Models;
 using Newtonsoft.Json;
 
-namespace Clothes.Store.Common.Responses
+namespace Clothes.Store.Common.Requests
 {
-    public class UserResponse
+    public class UserCreateRequest
     {
-
-        [JsonProperty("userId")]
-        public int Id { get; set; }
-
         [JsonProperty("firstName")]
         public string FirstName { get; set; }
 
@@ -28,3 +24,4 @@ namespace Clothes.Store.Common.Responses
         public List<PhoneNumber> PhoneNumbers { get; set; }
     }
 }
+

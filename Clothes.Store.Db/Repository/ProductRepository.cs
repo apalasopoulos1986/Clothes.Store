@@ -14,7 +14,7 @@ namespace Clothes.Store.Db.Repository
         private readonly DapperContext _context;
         public ProductRepository(DapperContext context) => _context = context;
 
-        private static string GetAllProductsFromDb = @" SELECT * FROM Products ";
+        private static string GetAllProductsFromDbQuery = @" SELECT * FROM Products ";
         private static string InsertProductResponseFromWebServiceSp = "InsertProductResponseFromWebService";
 
         public async Task<Result<List<Product>>> GetProductsFromDb()
@@ -23,7 +23,7 @@ namespace Clothes.Store.Db.Repository
             {
                 using (var connection = _context.CreateConnection())
                 {
-                    var products = await connection.QueryAsync<Product>(GetAllProductsFromDb);
+                    var products = await connection.QueryAsync<Product>(GetAllProductsFromDbQuery);
                     return Result<List<Product>>.ActionSuccessful(products.ToList(), Clothes.Store.Common.Models.Result.ResponseCodes.Codes.OK);
                 }
             }

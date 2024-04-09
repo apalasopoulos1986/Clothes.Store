@@ -10,6 +10,7 @@ namespace Clothes.Store.Api.Configuration
         {
             {
                 services.AddTransient<IProductsMigrationService, ProductsMigrationService>();
+                services.AddTransient<IUserService, UsersService>();
             }
 
             return services;

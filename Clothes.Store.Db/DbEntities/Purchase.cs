@@ -10,5 +10,7 @@
         public int ProductId { get; set; }
         public DateTime PurchaseDate { get; set; }
 
+        public bool IsUserActive { get; set; }
+
     }
 }

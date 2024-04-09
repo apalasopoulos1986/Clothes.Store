@@ -1,5 +1,6 @@
 ﻿using Clothes.Store.Common.Models.Settings;
 
+
 namespace Clothes.Store.Api.Configuration
 {
     public static class SettingsOptionsExtensions
@@ -8,6 +9,7 @@ namespace Clothes.Store.Api.Configuration
         {
             builder.Services.Configure<StoreSettings>(
                 builder.Configuration.GetSection(nameof(StoreSettings)));
+           
         }
     }
 }

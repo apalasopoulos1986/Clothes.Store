@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clothes.Store.Api", "Clothes.Store.Api\Clothes.Store.Api.csproj", "{4507CD6B-3340-4DB0-9598-514ECE45FF99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothes.Store.Api", "Clothes.Store.Api\Clothes.Store.Api.csproj", "{4507CD6B-3340-4DB0-9598-514ECE45FF99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clothes.Store.Db", "Clothes.Store.Db\Clothes.Store.Db.csproj", "{402D6590-C45D-4BDE-898F-D5B349DD2447}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothes.Store.Db", "Clothes.Store.Db\Clothes.Store.Db.csproj", "{402D6590-C45D-4BDE-898F-D5B349DD2447}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clothes.Store.Common", "Clothes.Store.Common\Clothes.Store.Common.csproj", "{9510E733-8F94-49BE-8092-7789AEF18A5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothes.Store.Common", "Clothes.Store.Common\Clothes.Store.Common.csproj", "{9510E733-8F94-49BE-8092-7789AEF18A5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clothes.Store.Service", "Clothes.Store.Service\Clothes.Store.Service.csproj", "{F438387B-F609-4305-B091-A584A01EDD31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clothes.Store.Service", "Clothes.Store.Service\Clothes.Store.Service.csproj", "{F438387B-F609-4305-B091-A584A01EDD31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
