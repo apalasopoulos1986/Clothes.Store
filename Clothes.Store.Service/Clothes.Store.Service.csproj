@@ -16,8 +16,4 @@
     <ProjectReference Include="..\Clothes.Store.Db\Clothes.Store.Db.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="User.Json.File\" />
-  </ItemGroup>
-
 </Project>
