@@ -26,7 +26,7 @@ namespace Clothes.Store.Db.Repository
                 FROM Users 
                 WHERE FirstName = @FirstName AND LastName = @LastName AND Age = @Age AND Gender = @Gender";
 
-        public async Task<Result<List<User>>> GetAllUsersAsync()
+        public async Task<Result<List<User>>> GetAllUsersAsyncFromDb()
         {
             try
             {
@@ -75,7 +75,7 @@ namespace Clothes.Store.Db.Repository
             }
         }
 
-        public async Task<Result<User>> GetUserByIdAsync(int id)
+        public async Task<Result<User>> GetUserByIdAsyncFromDb(int id)
         {
             try
             {

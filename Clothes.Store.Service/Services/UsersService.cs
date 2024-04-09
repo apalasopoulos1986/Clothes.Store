@@ -5,6 +5,9 @@ using Clothes.Store.Db.Interfaces;
 using Clothes.Store.Service.Interfaces;
 using Clothes.Store.Db.Extensions;
 using Clothes.Store.Db.DbEntities;
+using Clothes.Store.Common.Responses;
+using Clothes.Store.Common.Models;
+using Newtonsoft.Json;
 
 
 namespace Clothes.Store.Service.Services
@@ -35,30 +38,61 @@ namespace Clothes.Store.Service.Services
             }
         }
 
-        public async Task<Result<List<User>>> GetAllUsersAsync()
+        public async Task<Result<List<UserResponse>>> GetAllUsersAsync()
         {
             try
             {
-                return await _userRepository.GetAllUsersAsync();
+                var usersResult = await _userRepository.GetAllUsersAsyncFromDb(); 
+                if (!usersResult.Success)
+                {
+                    return Result<List<UserResponse>>.ActionFailed(null, usersResult.Code, usersResult.Info);
+                }
+
+                var usersDb = usersResult.Data; 
+                var userResponses = usersDb.Select(user => ConvertToUserResponse(user)).ToList();
+                return Result<List<UserResponse>>.ActionSuccessful(userResponses, Codes.OK);
             }
             catch (Exception ex)
             {
-
-                return Result<List<User>>.Exception(Codes.InternalError, ex);
+            
+                return Result<List<UserResponse>>.Exception(Codes.InternalError, ex);
             }
         }
 
-        public async Task<Result<User>> GetUserByIdAsync(int id)
+        public async Task<Result<UserResponse>> GetUserByIdAsync(int id)
         {
             try
             {
-                return await _userRepository.GetUserByIdAsync(id);
+                var userResult= await _userRepository.GetUserByIdAsyncFromDb(id);
+                if (!userResult.Success)
+                {
+                    return Result<UserResponse>.ActionFailed(null, userResult.Code, userResult.Info);
+
+                }
+                var userDb = userResult.Data;
+                var userResponse = ConvertToUserResponse(userDb);
+                return Result<UserResponse>.ActionSuccessful(userResponse, Codes.OK);
             }
             catch (Exception ex)
             {
 
-                return Result<User>.Exception(Codes.InternalError, ex);
+                return Result<UserResponse>.Exception(Codes.InternalError, ex);
             }
+        }
+
+
+        private UserResponse ConvertToUserResponse(User user)
+        {
+            return new UserResponse
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Gender = user.Gender,
+                Age = user.Age,
+                Address = JsonConvert.DeserializeObject<Address>(user.Address),
+                PhoneNumbers = JsonConvert.DeserializeObject<List<PhoneNumber>>(user.PhoneNumbers)
+            };
         }
     }
 }
