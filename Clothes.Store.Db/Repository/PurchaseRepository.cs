@@ -14,6 +14,7 @@ namespace Clothes.Store.Db.Repository
 
 
         private static string CheckUserExistsQuery = @" SELECT COUNT(1) FROM Users WHERE Id = @UserId; ";
+
         private static string CheckProductExistsQuery = @" SELECT COUNT(1) FROM Products WHERE Id = @ProductId; ";
 
         private static string PurchaseProductQuery = @" 
