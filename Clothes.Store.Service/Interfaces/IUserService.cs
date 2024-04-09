@@ -11,5 +11,7 @@ namespace Clothes.Store.Service.Interfaces
         public Task<Result<List<UserResponse>>> GetAllUsersAsync();
 
         public Task<Result<UserResponse>> GetUserByIdAsync(int id);
+
+        public Task<Result<bool>> DeleteUserAsync(int userId);
     }
 }

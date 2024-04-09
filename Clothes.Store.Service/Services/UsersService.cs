@@ -79,7 +79,25 @@ namespace Clothes.Store.Service.Services
                 return Result<UserResponse>.Exception(Codes.InternalError, ex);
             }
         }
+        public async Task<Result<bool>> DeleteUserAsync(int userId)
+        {
+            try
+            {
+                
+                var deleteResult = await _userRepository.DeleteUserAsyncFromDb(userId);
 
+                if (!deleteResult.Success)
+                {
+                    return Result<bool>.ActionFailed(false, deleteResult.Code, deleteResult.Info);
+                }
+
+                return Result<bool>.ActionSuccessful(true, Codes.OK);
+            }
+            catch (Exception ex)
+            {
+                return Result<bool>.Exception(Codes.InternalError, ex);
+            }
+        }
 
         private UserResponse ConvertToUserResponse(User user)
         {

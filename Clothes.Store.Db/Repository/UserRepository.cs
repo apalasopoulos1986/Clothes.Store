@@ -26,6 +26,16 @@ namespace Clothes.Store.Db.Repository
                 FROM Users 
                 WHERE FirstName = @FirstName AND LastName = @LastName AND Age = @Age AND Gender = @Gender";
 
+
+        private static string UpdatePurchasesForDeletedUserQuery = @"
+            UPDATE Purchases 
+            SET IsUserActive = 0 
+            WHERE UserId = @UserId";
+
+        private static string DeleteUserQuery = @"
+            DELETE FROM Users 
+            WHERE Id = @Id";
+
         public async Task<Result<List<User>>> GetAllUsersAsyncFromDb()
         {
             try
@@ -97,6 +107,39 @@ namespace Clothes.Store.Db.Repository
                 return Result<User>.Exception(Clothes.Store.Common.Models.Result.ResponseCodes.Codes.InternalError, ex);
             }
         }
+        public async Task<Result<bool>> DeleteUserAsyncFromDb(int userId)
+        {
+            try
+            {
+                using (var connection = _context.CreateConnection())
+                {
+                    
+
+                    // Check if the user has any purchases and update them
+                    await connection.ExecuteAsync(UpdatePurchasesForDeletedUserQuery, new { UserId = userId });
+
+                    // Now delete the user
+                    int affectedRows = await connection.ExecuteAsync(DeleteUserQuery, new { Id = userId });
+
+                    if (affectedRows > 0)
+                    {
+                      
+                        return Result<bool>.ActionSuccessful(true, Codes.OK);
+                    }
+                    else
+                    {
+                        
+                        return Result<bool>.ActionFailed(false, Codes.NotFound, new Info { Message = "User not found." });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Result<bool>.Exception(Codes.InternalError, ex);
+            }
+        }
+
+
 
     }
 }

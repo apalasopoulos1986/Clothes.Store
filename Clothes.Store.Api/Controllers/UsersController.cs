@@ -22,11 +22,7 @@ namespace Clothes.Store.Api.Controllers
       
         public async Task<IActionResult> CreateUser([FromBody] UserCreateRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                var result = Result<bool>.ActionFailed(false, Codes.BadRequest, new Info { Message = "Invalid model state." });
-                return BadRequest(result);
-            }
+          
 
             var createResult = await _userService.CreateUserAsync(request);
 
@@ -69,6 +65,26 @@ namespace Clothes.Store.Api.Controllers
             else
             {
                 return StatusCode(result.Code, result);
+            }
+        }
+
+
+        [Route("[action]")]
+        [HttpDelete]
+
+        public async Task<IActionResult> DeleteUser([FromBody] int id)
+        {
+           
+
+            var deleteResult = await _userService.DeleteUserAsync(id);
+
+            if (deleteResult.Success)
+            {
+                return Ok(deleteResult);
+            }
+            else
+            {
+                return StatusCode(deleteResult.Code, deleteResult);
             }
         }
     }
