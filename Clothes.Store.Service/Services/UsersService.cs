@@ -26,14 +26,12 @@ namespace Clothes.Store.Service.Services
         {
             try
             {
-
                 var user = request.ToUser();
 
                 return await _userRepository.CreateUserAsync(user);
             }
             catch (Exception ex)
             {
-               
                 return Result<bool>.Exception(Codes.InternalError, ex);
             }
         }
@@ -42,19 +40,22 @@ namespace Clothes.Store.Service.Services
         {
             try
             {
-                var usersResult = await _userRepository.GetAllUsersAsyncFromDb(); 
+                var usersResult = await _userRepository.GetAllUsersAsyncFromDb();
+
                 if (!usersResult.Success)
                 {
                     return Result<List<UserResponse>>.ActionFailed(null, usersResult.Code, usersResult.Info);
                 }
 
-                var usersDb = usersResult.Data; 
+                var usersDb = usersResult.Data;
+
                 var userResponses = usersDb.Select(user => ConvertToUserResponse(user)).ToList();
+
                 return Result<List<UserResponse>>.ActionSuccessful(userResponses, Codes.OK);
             }
             catch (Exception ex)
             {
-            
+
                 return Result<List<UserResponse>>.Exception(Codes.InternalError, ex);
             }
         }
@@ -63,19 +64,21 @@ namespace Clothes.Store.Service.Services
         {
             try
             {
-                var userResult= await _userRepository.GetUserByIdAsyncFromDb(id);
+                var userResult = await _userRepository.GetUserByIdAsyncFromDb(id);
+
                 if (!userResult.Success)
                 {
                     return Result<UserResponse>.ActionFailed(null, userResult.Code, userResult.Info);
 
                 }
                 var userDb = userResult.Data;
+
                 var userResponse = ConvertToUserResponse(userDb);
+
                 return Result<UserResponse>.ActionSuccessful(userResponse, Codes.OK);
             }
             catch (Exception ex)
             {
-
                 return Result<UserResponse>.Exception(Codes.InternalError, ex);
             }
         }
@@ -83,7 +86,7 @@ namespace Clothes.Store.Service.Services
         {
             try
             {
-                
+
                 var deleteResult = await _userRepository.DeleteUserAsyncFromDb(userId);
 
                 if (!deleteResult.Success)

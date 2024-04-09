@@ -8,7 +8,6 @@ using Clothes.Store.Common.Responses;
 using Clothes.Store.Db.Interfaces;
 
 
-
 namespace Clothes.Store.Service.Services
 {
     public class ProductsMigrationService : IProductsMigrationService
