@@ -56,7 +56,7 @@ namespace Clothes.Store.Api.Controllers
             }
         }
 
-        [Route("[action]")]
+        
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
