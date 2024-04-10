@@ -6,7 +6,7 @@ C# (NET 8 Framework)
 SQL Server (2022 Edition)
 Dapper (For ORM Functionalities)
 
-Installaion / Basic Use
+Installation / Basic Use
 
 After you clone the repo, in appsettings.json of Clothes.Store.Api project you complete in the ConnectionStrings section the connection string of your choice
 Example:  "ConnectionStrings": {
