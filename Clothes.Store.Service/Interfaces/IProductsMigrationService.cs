@@ -8,5 +8,7 @@ namespace Clothes.Store.Service.Interfaces
         public Task<Result<List<ProductResponse>>> FetchProductsFromWebServiceAsync();
 
         public  Task<Result<bool>> MigrateProductsAsync();
+
+        public Task<Result<int>> UpdateProductsFromWebServiceAsync();
     }
 }
