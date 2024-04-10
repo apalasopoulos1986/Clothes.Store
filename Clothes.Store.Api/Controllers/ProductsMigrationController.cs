@@ -23,7 +23,7 @@ namespace Clothes.Store.Api.Controllers
         )
         {
             _productsMigrationService = productsMigrationService;
-            _productRepo= productRepo;
+            _productRepo = productRepo;
         }
 
 
@@ -65,11 +65,11 @@ namespace Clothes.Store.Api.Controllers
             }
             else if (result.HasException)
             {
-                
+
                 return StatusCode(Codes.InternalError, result.Info?.Message);
             }
             else
-            {              
+            {
                 return StatusCode(result.Code, result.Info?.Message);
             }
         }
@@ -85,13 +85,37 @@ namespace Clothes.Store.Api.Controllers
             else if (result.HasException)
             {
 
-                return StatusCode(Codes.InternalError, result.Info?.Message);
+                return StatusCode(Codes.InternalError, new Info { Message=" Product Insertion Failed. Use Update Endpoint "});
             }
             else
             {
-                return StatusCode(result.Code, result.Info?.Message);
+                return StatusCode(result.Code, new Info { Message = " Product Insertion Failed. Use Update Endpoint " });
             }
         }
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<IActionResult> UpdateProductsFromWebService()
+        {
+            var result = await _productsMigrationService.UpdateProductsFromWebServiceAsync();
+            if (result.Success)
+            {
+                return Ok(new { UpdatedCount = result.Data });
+            }
+            else
+            {
+                switch (result.Code)
+                {
+                    case Common.Models.Result.ResponseCodes.Codes.BadRequest:
+                        return BadRequest(result.Info);
 
+                    case Common.Models.Result.ResponseCodes.Codes.InternalError:
+                        return StatusCode(500, result.Info);
+
+                    default:
+                        return StatusCode(result.Code, result.Info ?? new Info { Message = "An unexpected error occurred." });
+                }
+            }
+
+        }
     }
 }

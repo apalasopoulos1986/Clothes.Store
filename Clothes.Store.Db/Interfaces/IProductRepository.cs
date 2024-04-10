@@ -8,5 +8,6 @@ namespace Clothes.Store.Db.Interfaces
     {
         public Task<Result<List<Product>>> GetProductsFromDb();
         public Task<Result<bool>> InsertProductsAsync(List<ProductResponse> productResponses);
+        public Task<Result<int>> UpdateProductAsync(List<ProductResponse> productResponses);
     }
 }

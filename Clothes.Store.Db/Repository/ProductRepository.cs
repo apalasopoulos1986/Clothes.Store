@@ -7,6 +7,7 @@ using Clothes.Store.Db.Interfaces;
 using Dapper;
 using System.Data;
 
+
 namespace Clothes.Store.Db.Repository
 {
     public class ProductRepository : IProductRepository
@@ -16,6 +17,7 @@ namespace Clothes.Store.Db.Repository
 
         private static string GetAllProductsFromDbQuery = @" SELECT * FROM Products ";
         private static string InsertProductResponseFromWebServiceSp = "InsertProductResponseFromWebService";
+        private static string UpdateProductResponseFromWebService = "UpdateProductResponseFromWebService";
 
         public async Task<Result<List<Product>>> GetProductsFromDb()
         {
@@ -70,6 +72,52 @@ namespace Clothes.Store.Db.Repository
             {
                 connection?.Dispose();
             }
+
+
         }
+        public async Task<Result<int>> UpdateProductAsync(List<ProductResponse> productResponses)
+        {
+            IDbConnection connection = null;
+            int totalUpdatedRows = 0;
+            try
+            {
+                using (connection = _context.CreateConnection())
+                {
+
+                    foreach (var response in productResponses)
+
+                    {
+                        var product = response.ToProduct();
+                        var parameters = new DynamicParameters();
+
+                        parameters.Add("@Id", product.Id, DbType.Int32);
+                        parameters.Add("@Title", product.Title, DbType.String);
+                        parameters.Add("@Price", product.Price, DbType.Decimal);
+                        parameters.Add("@Description", product.Description, DbType.String);
+                        parameters.Add("@Category", product.Category, DbType.String);
+                        parameters.Add("@Image", product.Image, DbType.String);
+                        parameters.Add("@Rating", product.Rating, DbType.String);
+
+                        var rowsAffected = await connection.ExecuteAsync(UpdateProductResponseFromWebService, parameters, commandType: CommandType.StoredProcedure);
+                        totalUpdatedRows += rowsAffected;
+                    }
+
+                    return Result<int>.ActionSuccessful(totalUpdatedRows, Clothes.Store.Common.Models.Result.ResponseCodes.Codes.OK);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return Result<int>.Exception(Clothes.Store.Common.Models.Result.ResponseCodes.Codes.InternalError, ex);
+            }
+
+            finally
+            {
+                connection?.Dispose();
+            }
+
+        }
+
     }
 }

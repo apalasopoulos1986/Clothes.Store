@@ -80,6 +80,26 @@ namespace Clothes.Store.Service.Services
                 return Result<bool>.Exception(Common.Models.Result.ResponseCodes.Codes.InternalError, ex);
             }
         }
+        public async Task<Result<int>> UpdateProductsFromWebServiceAsync()
+        {
+            try
+            {
+                var fetchResult = await FetchProductsFromWebServiceAsync();
 
+                if (!fetchResult.Success)
+                {
+                    return Result<int>.ActionFailed(0, fetchResult.Code, fetchResult.Info);
+                }
+
+                var updateResult = await _productRepo.UpdateProductAsync(fetchResult.Data);
+
+
+                return Result<int>.ActionSuccessful(updateResult.Data, updateResult.Code);
+            }
+            catch (Exception ex)
+            {
+                return Result<int>.Exception(Common.Models.Result.ResponseCodes.Codes.InternalError, ex);
+            }
+        }
     }
 }
