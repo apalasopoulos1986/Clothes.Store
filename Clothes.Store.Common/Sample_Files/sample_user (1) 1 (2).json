@@ -1,0 +1,35 @@
+{
+    "users":[
+        {
+            "userId": "1",
+            "firstName": "Joe",
+            "lastName": "Jackson",
+            "gender": "male",
+            "age": 28,
+            "address": {
+                "streetAddress": "101",
+                "city": "San Diego",
+                "state": "CA"
+            },
+            "phoneNumbers": [
+                { "type": "home", "number": "7349282382" }
+            ]
+        },
+        {
+            "userId": "2",
+            "firstName": "William",
+            "lastName": "Franklin",
+            "gender": "female",
+            "age": 34,
+            "address": {
+                "streetAddress": "967",
+                "city": "Texas",
+                "state": "Texas"
+            },
+            "phoneNumbers": [
+                { "type": "mobile", "number": "2342347097" }
+            ]
+        }
+       
+    ]
+}

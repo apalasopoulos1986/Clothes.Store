@@ -1,6 +1,42 @@
 Clothes Store Api
 A .Net 8 Web Api Project that mimics the basic functionalities of a Clothes EShop
 
+Within the code, a data structure is to be created using a pattern of your choice.
+After processing the data, it should be retrievable using a REST interface. 
+In addition, products from the Rest API mentioned below are to be queried.
+Furthermore, the data should be called from the API using a stored procedure. 
+ The entire data should be stored in a normalized database.
+
+
+
+REST-API:
+
+    1.  https://fakestoreapi.com/products/
+
+The API need to:
+
+    1.  
+Retrieve all users (in an optimised way)
+
+    2.  
+Creating a user
+
+    3.  
+Fetch a user by id
+
+    4.  
+Delete a user by id
+
+    5.  
+One user should have the possibility to buy one product
+
+    6.  
+Get all users who purchased products with productId
+
+    7.  
+Get all purchased products from one user
+
+
 Technologies used
 C# (NET 8 Framework)
 SQL Server (2022 Edition)
